@@ -1,0 +1,168 @@
+/* Styles for Storming Circuits - AI Vidyasetu 1.0
+   Modern aesthetic: gradients, glassmorphism, rounded cards, neon glow
+*/
+:root{
+  --bg-1: linear-gradient(135deg,#ff9a9e 0%,#fad0c4 100%);
+  --bg-2: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  --glass: rgba(255,255,255,0.07);
+  --accent: #6c63ff;
+  --muted: #8a8f98;
+  --card-radius: 16px;
+  --glass-radius: 20px;
+}
+.hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;             /* Chrome, Safari, Opera */
+}
+
+
+*{box-sizing:border-box}
+html,body{height:100%}
+html, body {height:100%;}
+body{
+  font-family: 'Poppins', 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
+  /* Full-page optimized gradient that stretches with the page and remains stable */
+  background: linear-gradient(180deg,#071228 0%, #0f1530 35%, #071428 100%);
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color:#e6eef8;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+  padding:0;
+  margin:0;
+}
+
+.site-header{position:relative;overflow:hidden;padding:36px 0 10px}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+
+.logos-strip{display:flex;align-items:center;gap:18px;justify-content:center}
+.logo-wrap{width:64px;height:64px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));display:flex;align-items:center;justify-content:center;padding:8px;transition:transform 350ms, box-shadow 350ms}
+.logo-wrap img{max-width:100%;max-height:100%;filter:brightness(0) invert(1);}
+.logo-wrap:hover{transform:scale(1.08);box-shadow:0 10px 30px rgba(108,99,255,0.12)}
+.logo-wrap.team-logo{width:86px;height:86px;border-radius:18px;box-shadow:0 20px 50px rgba(108,99,255,0.12)}
+.logo-wrap.team-logo.floating{animation:float 6s ease-in-out infinite}
+@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+
+.header-meta{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.team-name{font-size:22px;margin:0;color:#fff;text-shadow:0 4px 18px rgba(108,99,255,0.18)}
+.meta-row{display:flex;gap:12px;align-items:center}
+.badge{background:linear-gradient(90deg,#ff9a9e,#ffb199);color:#071334;padding:8px 12px;border-radius:999px;font-weight:600}
+.team-id{color:var(--muted);font-size:0.95rem}
+
+.hero{max-width:1200px;margin:18px auto 40px;padding:28px 20px;position:relative;border-radius:var(--glass-radius);overflow:visible;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 10px 40px rgba(2,6,23,0.6);display:flex;align-items:center;gap:30px}
+.hero-content{flex:1;z-index:2}
+.lead{font-size:28px;margin:0 0 8px;color:#f8fbff}
+.sub{color:var(--muted);margin:0 0 16px}
+.hero-actions{display:flex;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:600;text-decoration:none}
+.btn-primary{background:linear-gradient(90deg,#6c63ff,#8f5bff);color:white;box-shadow:0 8px 30px rgba(108,99,255,0.18)}
+.btn-ghost{background:transparent;color:#dbeafe;border:1px solid rgba(255,255,255,0.06)}
+.btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.08);color:#fff;padding:8px 12px;border-radius:10px}
+
+.hero-blobs{position:absolute;right:-120px;top:-60px;z-index:1;pointer-events:none}
+.blob{width:280px;height:280px;border-radius:50%;filter:blur(36px);opacity:0.9}
+.blob-1{background:radial-gradient(circle at 30% 30%, #ff9a9e, transparent 40%)}
+.blob-2{background:radial-gradient(circle at 60% 50%, #6c63ff, transparent 40%);transform:translate(40px,60px);width:220px;height:220px}
+.blob-3{background:radial-gradient(circle at 20% 60%, #33d1ff, transparent 30%);transform:translate(-80px,160px);width:180px;height:180px}
+
+.section{max-width:1200px;margin:40px auto;padding:0 20px}
+.section-title{font-size:20px;color:#e6eef8;margin:0 0 18px}
+
+/* Timeline */
+.timeline{display:flex;flex-direction:column;gap:18px;position:relative}
+.timeline::before{content:'';position:absolute;left:32px;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#6c63ff,#33d1ff);border-radius:4px}
+.timeline-item{display:flex;gap:16px;padding:12px 14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;backdrop-filter:blur(6px);box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+.timeline-item .time{min-width:80px;color:#cfe8ff;font-weight:700}
+.timeline-item .content h4{margin:0 0 6px;color:#fff}
+.timeline-item .content p{margin:0;color:var(--muted)}
+
+/* Projects grid */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.project-card{border-radius:14px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 10px 30px rgba(2,6,23,0.6);transition:transform 300ms,box-shadow 300ms}
+.project-card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(108,99,255,0.12)}
+.thumb{height:160px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))}
+.thumb img{max-width:88%;max-height:88%}
+.proj-body{padding:14px}
+.proj-title{margin:0 0 8px;color:#fff}
+.proj-desc{margin:0 0 12px;color:var(--muted)}
+.proj-actions{display:flex;justify-content:flex-end}
+
+/* member cards */
+.team-section{margin-top:36px}
+.members-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px}
+.member-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:14px;text-align:center;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+.member-card .avatar{width:88px;height:88px;border-radius:50%;object-fit:cover;margin:0 auto 10px}
+.member-card h4{margin:6px 0 4px;color:#fff}
+.member-card .role{color:var(--muted);font-size:0.9rem;margin:0 0 8px}
+.member-card .msg{font-size:0.9rem;color:#cfe8ff;opacity:0.9}
+
+.mentors-grid{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px}
+.mentor-card{display:flex;gap:12px;align-items:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:12px;flex:1}
+.mentor-card .avatar.small{width:56px;height:56px}
+
+/* announcement popup */
+.announcement{position:fixed;right:18px;bottom:18px;width:360px;max-width:calc(100% - 36px);background:linear-gradient(180deg,#071428cc,#071428ee);border-radius:12px;padding:14px;z-index:1400;box-shadow:0 18px 60px rgba(2,6,23,0.8);transform:translateY(18px) scale(.98);opacity:0;transition:all 360ms}
+.announcement.show{transform:none;opacity:1}
+.announcement .title{font-weight:700;color:#fff;margin:0 0 6px}
+.announcement .body{color:#cfe8ff;margin:0 0 8px}
+.announcement .a-close{position:absolute;right:10px;top:8px;background:transparent;border:0;color:#cfe8ff;font-size:16px;cursor:pointer}
+
+/* small tilt for cards */
+.project-card{transform-style:preserve-3d;transition:transform 320ms cubic-bezier(.2,.9,.3,1),box-shadow 320ms}
+.project-card:hover{transform:translateY(-8px) rotateX(2deg) rotateY(-2deg)}
+
+/* button micro-interaction */
+.btn:active{transform:translateY(1px) scale(.995)}
+
+
+/* Modal styles */
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:1200}
+.modal.show{display:flex}
+.modal-backdrop{position:absolute;inset:0;background:rgba(1,6,23,0.6);backdrop-filter:blur(4px)}
+.modal-panel{position:relative;width:90%;max-width:980px;background:linear-gradient(180deg,#071428ee,#071428cc);border-radius:16px;padding:20px;box-shadow:0 20px 60px rgba(2,6,23,0.8);z-index:2;transform:translateY(12px) scale(.98);opacity:0;transition:all 320ms}
+.modal.show .modal-panel{transform:none;opacity:1}
+.modal-close{position:absolute;right:14px;top:10px;background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer}
+.modal-body{display:grid;grid-template-columns:1fr 420px;gap:18px}
+.video-wrap iframe{width:100%;height:320px;border-radius:10px;border:0}
+.pdf-wrap iframe{width:100%;height:240px;border-radius:8px;border:0}
+.modal-actions{display:flex;gap:12px;margin-top:12px}
+
+/* Footer */
+.site-footer{position:relative;padding:40px 20px;margin-top:60px;color:#cfe8ff}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:20px;align-items:center}
+#particles{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+/* Reveal animations */
+.reveal{opacity:0;transform:translateY(18px) scale(.995);transition:opacity 560ms ease, transform 560ms cubic-bezier(.2,.9,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+
+/* Responsive */
+@media (max-width:900px){.modal-body{grid-template-columns:1fr} .header-inner{flex-direction:column;align-items:center}.header-meta{align-items:center}.hero{flex-direction:column;text-align:center}.team-name{font-size:18px}.hero-blobs{display:none}.timeline::before{left:16px}.timeline-item{flex-direction:column;align-items:flex-start}.timeline-item .time{min-width:50px}}
+
+@media (max-width:520px){.lead{font-size:20px}.thumb{height:140px}.video-wrap iframe{height:220px}.pdf-wrap iframe{height:180px}}
+
+/* Gallery marquee */
+.gallery-section .marquee{overflow:hidden;position:relative;padding:10px 0}
+.gallery-section .marquee-track{display:flex;gap:12px;align-items:center}
+.gallery-section .marquee-track img{height:140px;width:auto;border-radius:10px;object-fit:cover;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+
+/* Utility: apply inversion when needed for single-color placeholders */
+.invert-img{filter:brightness(0) invert(1);}
+/* Ensure the track is wide enough (duplicate content) and animate opposite directions continuously */
+.gallery-section .marquee-track{min-width:200%}
+/* both tracks animate with the same duration and start simultaneously; second track runs reversed for opposite direction */
+.gallery-section{--marquee-duration:32s}
+.gallery-section .marquee-track[data-track="1"]{animation:marquee var(--marquee-duration) linear infinite}
+.gallery-section .marquee-track[data-track="1"] + .marquee-track{animation:marquee var(--marquee-duration) linear infinite;animation-direction:reverse}
+.gallery-section h3.section-title{margin-bottom:12px}
+
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* announcement image styling */
+.announcement .a-img{width:100%;height:auto;border-radius:8px;margin-bottom:8px;display:block}
