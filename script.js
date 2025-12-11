@@ -132,24 +132,55 @@ document.addEventListener('DOMContentLoaded',()=>{
     body: 'We are also proud to share that we were the only Junior Team representing the entire Chennai Region to get qualified for the Finals! 🚀',
     image: 'assets/images/announcement.jpg', // optional image (set to null or '' to hide)
     imageHref: '', // optional link when image is clicked
-    timeoutMs: 8000 // auto-hide after this many ms (set 0 to keep until closed)
+    timeoutMs: 8000, // auto-hide after this many ms (set 0 to keep until closed)
+    fullscreen: true // show as a full-screen centered popup when true
   };
 
   function showAnnouncement(cfg){
     if(!cfg || !cfg.enabled) return;
     const a = document.createElement('div');
     a.className = 'announcement';
+    if(cfg.fullscreen) a.classList.add('fullscreen');
+    // prepare image html
     let imgHtml = '';
     if(cfg.image){
       const href = cfg.imageHref ? `href="${cfg.imageHref}" target="_blank" rel="noopener"` : '';
       imgHtml = cfg.imageHref ? `<a ${href}><img class="a-img" src="${cfg.image}" alt="announcement image"></a>` : `<img class="a-img" src="${cfg.image}" alt="announcement image">`;
     }
-    a.innerHTML = `<button class="a-close" aria-label="Close">✕</button>${imgHtml}<div class="title">${cfg.title}</div><div class="body">${cfg.body}</div>`;
+    // support newlines in title
+    const titleHtml = (cfg.title || '').replace(/\n/g,'<br>');
+
+    a.innerHTML = `
+      <div class="a-panel" role="dialog" aria-modal="true">
+        <button class="a-close" aria-label="Close">✕</button>
+        <div class="a-inner">
+          ${imgHtml ? `<div class="a-media">${imgHtml}</div>` : ''}
+          <div class="a-content">
+            <div class="title">${titleHtml}</div>
+            <div class="body">${cfg.body}</div>
+          </div>
+        </div>
+      </div>
+    `;
     document.body.appendChild(a);
+    // lock background scroll on show
+    document.body.style.overflow = 'hidden';
     // allow CSS transition
     requestAnimationFrame(()=>a.classList.add('show'));
-    a.querySelector('.a-close').addEventListener('click', ()=>{a.classList.remove('show');setTimeout(()=>a.remove(),400)});
-    if(cfg.timeoutMs && cfg.timeoutMs>0){setTimeout(()=>{if(document.body.contains(a)){a.classList.remove('show');setTimeout(()=>a.remove(),400)}},cfg.timeoutMs)}
+    a.querySelector('.a-close').addEventListener('click', ()=>{
+      a.classList.remove('show');
+      document.body.style.overflow = '';
+      setTimeout(()=>a.remove(),400);
+    });
+    if(cfg.timeoutMs && cfg.timeoutMs>0){
+      setTimeout(()=>{
+        if(document.body.contains(a)){
+          a.classList.remove('show');
+          document.body.style.overflow = '';
+          setTimeout(()=>a.remove(),400);
+        }
+      },cfg.timeoutMs)
+    }
   }
   // show on every page load (customize ADMIN_ANNOUNCEMENT above)
   showAnnouncement(ADMIN_ANNOUNCEMENT);
