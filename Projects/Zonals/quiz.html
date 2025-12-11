@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SePP - Smart Educational & Productivity Portal</title>
+    <link rel="icon" href="asset/logo-white-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+        <div class="nav-brand">
+        <span class="brand-icon"><img src="asset/logo.png" alt="" style="height: 60px;"></span>
+            <span class="brand-text">SePP</span>
+        </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link">🏠︎ Home</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="quiz.html" class="nav-link active">Quiz</a>
+                <a href="login.html" class="nav-link" id="loginLink">Login</a>
+                <a href="#" class="nav-link" id="logoutLink" style="display: none;" onclick="handleLogout()">➜]</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>🧠 Wellness & Habits Quiz</h1>
+            <p>Test your knowledge of effective study methods and physical wellness</p>
+        </div>
+
+        <div class="quiz-container-wrapper">
+            <div id="quiz-start-screen" class="quiz-start-screen">
+                <div class="quiz-intro">
+                    <h2>Ready to Test Your Knowledge?</h2>
+                    <p>This quiz contains 12 questions about:</p>
+                    <ul class="quiz-topics">
+                        <li>✓ Effective study methods (Pomodoro, Active Recall, etc.)</li>
+                        <li>✓ Physical benefits of exercise</li>
+                        <li>✓ Study-life balance techniques</li>
+                        <li>✓ Wellness and productivity tips</li>
+                    </ul>
+                    <p class="quiz-note">Your answers will be saved to track your progress over time.</p>
+                    <button class="btn-primary btn-large" onclick="startQuiz()">Start Quiz</button>
+                </div>
+            </div>
+
+            <div id="quiz-container" class="quiz-container" style="display: none;"></div>
+        </div>
+    </main>
+
+    <!-- Firebase SDK (compat) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/quiz.js"></script>
+    <script>
+        // Check auth
+        checkAuth().then(user => {
+            if (user) {
+                document.getElementById('loginLink').style.display = 'none';
+                document.getElementById('logoutLink').style.display = 'inline-block';
+            }
+        });
+
+        async function handleLogout() {
+            const result = await signOut();
+            if (result.success) {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>
+
